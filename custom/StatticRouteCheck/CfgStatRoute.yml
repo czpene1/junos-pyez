@@ -1,0 +1,23 @@
+# This structure defines the class CfgStaticRouteTable
+---
+CfgStaticRouteTable:
+  get: routing-instances/instance/routing-options/static/route
+  view: CfgStaticRouteView
+CfgStaticRouteView:
+  fields:
+    instance: ../../../name
+    nh: next-hop
+
+
+# Example of the output of an instance CfgStaticRouteTable.items() looks as follows:
+#
+#[('10.0.0.0/24', [('nh', '1.2.3.4'), ('instance', 'VRF-A')]),
+# ('10.0.1.0/24', [('nh', '1.2.3.4'), ('instance', 'VRF-A')]),
+# ('10.0.0.0/24', [('nh', '1.1.1.1'), ('instance', 'VRF-B')]),
+# ('10.0.1.0/24', [('nh', '2.2.2.2'), ('instance', 'VRF-B')]),
+# ('10.0.2.0/24', [('nh', '8.8.8.8'), ('instance', 'VRF-B')]),
+# ('10.0.3.0/24', [('nh', '4.4.4.4'), ('instance', 'VRF-B')]),
+# ('10.0.0.0/24', [('nh', '1.1.1.1'), ('instance', 'VRF-C')]),
+# ('10.0.1.0/24', [('nh', '2.2.2.2'), ('instance', 'VRF-C')]),
+# ('10.0.2.0/24', [('nh', '3.3.3.3'), ('instance', 'VRF-C')]),
+# ('10.0.3.0/24', [('nh', '4.4.4.4'), ('instance', 'VRF-C')])]
