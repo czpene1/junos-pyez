@@ -1,5 +1,5 @@
 """
-Pythonifier for UserTable and UserView
+Pythonifier for CfgPlTable and CfgPlView
 """
 from jnpr.junos.factory import loadyaml
 from os.path import splitext
