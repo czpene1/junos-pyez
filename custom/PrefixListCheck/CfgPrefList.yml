@@ -1,0 +1,15 @@
+# This structure defines the class CfgPlTable
+---
+CfgPlTable:
+  get: policy-options/prefix-list
+  view: CfgPlView
+CfgPlView:
+  fields:
+    plitem: prefix-list-item/name
+
+
+# Example of the output of an instance CfgPlTable.items() looks as follows:
+#
+#[('TEST-A', [('plitem', ['10.20.30.0/24', '10.20.31.0/24', '10.20.32.0/24'])]),
+# ('TEST-B', [('plitem', ['10.20.30.0/24', '10.20.31.0/24', '10.20.32.0/24'])]),
+# ('TEST-C', [('plitem', '10.20.30.0/24')])]
