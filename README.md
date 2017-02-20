@@ -1,8 +1,6 @@
 
-**
 junos-pyez
 ----------
-**
 NetOps scripts based on Junos PyEZ
 
 There are a few Python scripts created by using custom Junos PyEZ Operational & Configuration Tables and Views which may help with checking the consistency of configuration applied on two MPLS-PE routers.
