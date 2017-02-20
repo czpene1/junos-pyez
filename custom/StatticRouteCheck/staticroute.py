@@ -1,11 +1,13 @@
-#################################################################################################################
-#                                                                                                               #
-#   Author:         Petr Nemec                                                                              #
-#   Description:    This script reads static route configuration defined under VRFs from two routers        #
-#                   and identifies missing routes                                                           #
-#   Date:           2017-02-11                                                                              #
-#                                                                                                               #
-#################################################################################################################
+""""
+#########################################################################################################
+
+   Author:         Petr Nemec
+   Description:    This script reads static route configuration defined under VRFs from two routers
+                   and identifies missing routes
+   Date:           2017-02-11
+
+#########################################################################################################
+"""
 
 from jnpr.junos import Device
 from jnpr.junos.exception import *
