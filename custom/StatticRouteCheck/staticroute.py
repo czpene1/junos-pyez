@@ -50,7 +50,7 @@ def table_to_dict(table):
 dev_a = {"name": "router-a", "ip": "1.1.1.1",
          "username": "joe", "password": "smith", }
 
-dev_b = {"name": "vmx-4", "ip": "2.2.2.2",
+dev_b = {"name": "router-b", "ip": "2.2.2.2",
          "username": "joe", "password": "smith", }
 
 
