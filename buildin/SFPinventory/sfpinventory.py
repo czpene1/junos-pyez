@@ -12,14 +12,15 @@ from jnpr.junos import Device
 from jnpr.junos.op.ethport import EthPortTable
 from jnpr.junos.op.xcvr import XcvrTable
 from pprint import pprint
+import getpass
 
 
-def getxcvr(device):
+def getxcvr_int(device):
     """
     :param device:  Directory describing device parameters i.e ip, hostname, credentials
-    :return:       Instance of class XcvrTable
+    :return:       Instance of class XcvrTable and instance of class EthPortTable
     """
-    router = Device(host=device["ip"], user=device["username"], password=device["password"])
+    router = Device(host=device["ip"], user=device["username"], password=device["password"], port=22)
     try:
         router.open()
     except Exception as err:
@@ -27,8 +28,10 @@ def getxcvr(device):
         return
     transceivers = (XcvrTable(router))
     transceivers.get()
+    ports = (EthPortTable(router))
+    ports.get()
     router.close()
-    return transceivers
+    return [transceivers, ports]
 
 
 def getsfpid(listofkeys):
@@ -56,23 +59,6 @@ def getsfpid(listofkeys):
     return l
 
 
-def getintf(device):
-    """
-    :param device:  Directory describing device parameters i.e ip, hostname, credentials
-    :return:        Instance of class EthPortTable
-    """
-    router = Device(host=device["ip"], user=device["username"], password=device["password"])
-    try:
-        router.open()
-    except Exception as err:
-        print "Cannot connect to device:", err
-        return
-    ports = (EthPortTable(router))
-    ports.get()
-    router.close()
-    return ports
-
-
 def getdown(ethports):
     """
     :param device:  Instance of class EthPortTable
@@ -88,25 +74,30 @@ def getdown(ethports):
     return l
 
 
-# Device credentials
-dev_a = {"name": "router-a", "ip": "1.1.1.1",
-         "username": "joe", "password": "smith", }
-
 
 def main():
+    # Login dialog
+    ip = raw_input("IP: ")
+    username = raw_input("Username[nemedpet]: ") or "nemedpet"
+    password = getpass.getpass(prompt='Password: ',stream=None)
+
+
+    dev_a = {"ip": ip, "username": username, "password": password}
+
     # Create instances of XcvrTable
-    sfp = getxcvr(dev_a)
+    sfp, interfaces = getxcvr_int(dev_a)
 
     # Print all transceivers
+    print("\n=========== All transceivers ==============================")
     pprint(sfp.items())
 
     # Create and print the list of transceiver indexes
     transceivers = getsfpid(sfp.keys())
-    print("\n=========== SFPs identified in these slots ====================")
+    print("\n=========== Slots where SFPs are found ====================")
     print(transceivers)
 
     # Create an instance of EthPortTable
-    interfaces = getintf(dev_a)
+    # interfaces = getintf(dev_a)
 
     # Print all interfaces
     # pprint(interfaces.items())
@@ -118,7 +109,6 @@ def main():
 
     print("\n=========== These SFPs are not in use  ====================")
     print(stock)
-
     for i in range(len(stock)):
         # split into three parts by sign "/"
         m = "FPC " + (stock[i]).split('/')[0]
