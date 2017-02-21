@@ -84,7 +84,7 @@ def main():
 
     dev_a = {"ip": ip, "username": username, "password": password}
 
-    # Create instances of XcvrTable
+    # Create instances of XcvrTable and EthPortTable
     sfp, interfaces = getxcvr_int(dev_a)
 
     # Print all transceivers
@@ -96,11 +96,6 @@ def main():
     print("\n=========== Slots where SFPs are found ====================")
     print(transceivers)
 
-    # Create an instance of EthPortTable
-    # interfaces = getintf(dev_a)
-
-    # Print all interfaces
-    # pprint(interfaces.items())
 
     # Get the list of interfaces which are down
     down = getdown(interfaces)
