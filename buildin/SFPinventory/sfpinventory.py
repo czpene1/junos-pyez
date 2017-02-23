@@ -66,7 +66,7 @@ def getdown(ethports):
     """
     l = []
     for port in ethports:
-        if (port.name.startswith("ge-") or port.name.startswith("xe-")):
+        if port.name.startswith("ge-") or port.name.startswith("xe-"):
             if port.admin == "down":
                 l.append(str(port.name)[3:])
             elif port.oper == "down":
@@ -78,13 +78,13 @@ def getdown(ethports):
 def main():
     # Login dialog
     ip = raw_input("IP: ")
-    username = raw_input("Username[nemedpet]: ") or "nemedpet"
-    password = getpass.getpass(prompt='Password: ',stream=None)
+    username = raw_input("Username[admin]: ") or "admin"
+    password = getpass.getpass(prompt='Password: ', stream=None)
 
 
     dev_a = {"ip": ip, "username": username, "password": password}
 
-    # Create instances of XcvrTable and EthPortTable
+    # Create the instances of XcvrTable and of EthPortTable
     sfp, interfaces = getxcvr_int(dev_a)
 
     # Print all transceivers
@@ -103,19 +103,16 @@ def main():
     stock = list(set(transceivers).intersection(down))
 
     print("\n=========== These SFPs are not in use  ====================")
-    print(stock)
+    print("FPC  , PIC  , Xcvr   : SN     , Type")
+
     for i in range(len(stock)):
         # split into three parts by sign "/"
-        m = "FPC " + (stock[i]).split('/')[0]
-        n = "PIC " + (stock[i]).split('/')[1]
-        o = "Xcvr " + (stock[i]).split('/')[2]
+        m = 'FPC ' + (stock[i]).split('/')[0]
+        n = 'PIC ' + (stock[i]).split('/')[1]
+        o = 'Xcvr ' + (stock[i]).split('/')[2]
         # create XcvrTable key to list additional sfp parameters
-        k = (m + ', ' + n + ', ' + o)
-        print sfp[k].ver
-        print sfp[k].pn
-        print sfp[k].sn
-        print sfp[k].type
-
+        k = (m, n, o)
+        print(m + ", " + n + ", " + o + ": " + sfp[k].sn + ", " + sfp[k].type)
 
 if __name__ == "__main__":
         main()
