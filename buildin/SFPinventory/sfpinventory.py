@@ -112,7 +112,12 @@ def main():
         o = 'Xcvr ' + (stock[i]).split('/')[2]
         # create XcvrTable key to list additional sfp parameters
         k = (m, n, o)
+        if ('ge-' + stock[i]) in interfaces:
+            print "Interface %s, Admin Status %s, Link Status %s" % ('ge-' + stock[i], interfaces['ge-' + stock[i]].admin, interfaces['ge-' + stock[i]].oper)
+        if ('xe-' + stock[i]) in interfaces:
+            print "Interface %s, Admin Status %s, Link Status %s" % ('xe-' + stock[i], interfaces['xe-' + stock[i]].admin, interfaces['xe-' + stock[i]].oper)
         print(m + ", " + n + ", " + o + ": " + sfp[k].sn + ", " + sfp[k].type)
 
 if __name__ == "__main__":
         main()
+
