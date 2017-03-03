@@ -1,0 +1,10 @@
+---
+router_a:
+  name: ro1
+  ip: 1.1.1.1
+  username: admin
+
+router_b:
+  name: ro2
+  ip: 2.2.2.2
+  username: admin
