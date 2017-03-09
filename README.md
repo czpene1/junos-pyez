@@ -70,6 +70,6 @@ Router-B
     
     
 
-**StaticRouteCheck**
+**SFPinventory**
  ----------
 This script helps you to find unused SFP transceivers plugged into slots referring to the interfaces which are either administratively down or their links status is down.
