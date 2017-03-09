@@ -28,7 +28,7 @@ Router-A
 
 Router-B
 
-    > admin@router-B> show configuration routing-instances
+    admin@router-B> show configuration routing-instances
     VRF-A {
     instance-type vrf;`enter code here`
     vrf-target target:65001:100;
@@ -48,7 +48,7 @@ This script is intended to be used for comparing the prefix-lists and their entr
 
 Router-A
 
-    > admin@Router-A> show configuration policy-options
+    admin@Router-A> show configuration policy-options
     prefix-list TEST-A {
         10.20.30.0/24;
         10.20.31.0/24;
@@ -58,7 +58,7 @@ Router-A
     
 Router-B
 
-    > admin@Router-A> show configuration policy-options
+    admin@Router-A> show configuration policy-options
     prefix-list TEST-A {
         10.20.30.0/24;
         10.20.32.0/24;
